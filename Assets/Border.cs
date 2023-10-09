@@ -46,4 +46,32 @@ public class Border : MonoBehaviour
 
     }
 
+    public Vector3 GetRandomSpawnPoint()
+    {
+        float xSize = _collider.bounds.size.x / 2.0f;
+        float ySize = _collider.bounds.size.y / 2.0f;
+
+        //We do this check so that asteroids are more likely to spawn on the longer borders
+        bool shouldSpawnOnXAxis = (Random.Range(0.0f, xSize + ySize) <= xSize);
+
+        //Once our randomized axis is selected, on which side of the screen should it spawn
+        bool shouldSpawnBottomLeft = Random.value > 0.5f;
+
+        if(shouldSpawnOnXAxis)
+        {
+            float xPos = Random.Range(0.0f, xSize);
+            float yPos = ySize;
+            if (shouldSpawnBottomLeft)
+                yPos *= -1;
+            return new Vector3(xPos, yPos, 0);
+        }
+        else
+        {
+            float xPos = xSize;
+            float yPos = Random.Range(0.0f, ySize);
+            if (shouldSpawnBottomLeft)
+                xPos *= -1;
+            return new Vector3(xPos, yPos, 0);
+        }
+    }
 }
