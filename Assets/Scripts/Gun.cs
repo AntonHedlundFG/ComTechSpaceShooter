@@ -10,6 +10,8 @@ public class Gun : MonoBehaviour
     [SerializeField] [Range(0.1f, 2.0f)] private float _shootCooldown = 0.5f;
     [SerializeField] [Range(1.0f, 50.0f)] private float _bulletSpeed = 10.0f;
     [SerializeField] [Range(1.0f, 10.0f)] private float _damage = 1.0f;
+    [SerializeField] [Range(5.0f, 20.0f)] private float _duration = 10.0f;
+
 
     private float _lastFireTime;
 
@@ -38,7 +40,7 @@ public class Gun : MonoBehaviour
             Destroy(_newObject);
             return;
         }
-        _newBullet.SetupBullet(transform.position, transform.right * _bulletSpeed, _damage);
+        _newBullet.SetupBullet(transform.position, transform.right * _bulletSpeed, _damage, _duration);
 
     }
 }

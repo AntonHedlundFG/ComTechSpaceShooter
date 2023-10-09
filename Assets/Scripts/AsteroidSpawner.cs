@@ -8,20 +8,25 @@ public class AsteroidSpawner : MonoBehaviour
     [SerializeField] private Border _border;
     [SerializeField] private float _asteroidSpeed = 5.0f;
     [SerializeField][Range(0.0f, 90.0f)] private float _maxRotationOffset = 35.0f;
+    [SerializeField] private float _spawnRate = 5.0f;
+    private float _lastSpawnTime;
 
     // Start is called before the first frame update
     void Start()
     {
         if (_asteroidPrefab == null || _border == null)
             Destroy(gameObject);
+
+        _lastSpawnTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Time.time >= _lastSpawnTime + _spawnRate)
         {
             SpawnAsteriod();
+            _lastSpawnTime = Time.time;
         }
     }
 
