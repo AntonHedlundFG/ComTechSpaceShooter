@@ -423,6 +423,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 279959224330749110, guid: 08562b1fe04ea954ab66bd16c9430381, type: 3}
+      propertyPath: _rotationRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647700090478963318, guid: 08562b1fe04ea954ab66bd16c9430381, type: 3}
+      propertyPath: _movementDrag
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647700090478963318, guid: 08562b1fe04ea954ab66bd16c9430381, type: 3}
+      propertyPath: _maxMovementSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647700090478963318, guid: 08562b1fe04ea954ab66bd16c9430381, type: 3}
+      propertyPath: _movementAccelerationRate
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6495837543484241446, guid: 08562b1fe04ea954ab66bd16c9430381, type: 3}
       propertyPath: m_Name
       value: PlayerShip
