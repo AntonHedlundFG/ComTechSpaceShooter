@@ -7,8 +7,10 @@ public class Asteroid : MonoBehaviour
 {
     private Vector3 _velocity;
     private float _damage = 5.0f;
+    private int _tier;
 
     private Health _health;
+    private AsteroidSpawner _spawner;
 
     private void OnEnable()
     {
@@ -26,11 +28,15 @@ public class Asteroid : MonoBehaviour
         transform.position += _velocity * Time.deltaTime;
     }
 
-    public void SetupAsteroid(Vector3 position, Vector3 velocity, float damage)
+    public void SetupAsteroid(AsteroidSpawner spawner, Vector3 position, Vector3 velocity, float damage, int Tier = 0)
     {
+        _spawner = spawner;
         transform.position = position;
         _velocity = velocity;
         _damage = damage;
+        _tier = Tier;
+        _health.ResetHealth(5.0f * (Tier + 1));
+        transform.localScale = Vector3.one * (Tier + 1);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,7 +51,9 @@ public class Asteroid : MonoBehaviour
 
     private void BreakAsteroid()
     {
-        Destroy(gameObject);
+        _spawner.SplitAsteroid(this, _tier);
     }
+
+    public float GetVelocity() { return _velocity.magnitude; }
 
 }

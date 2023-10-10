@@ -25,12 +25,23 @@ public class AsteroidSpawner : MonoBehaviour
     {
         if (Time.time >= _lastSpawnTime + _spawnRate)
         {
-            SpawnAsteriod();
+            SpawnAsteroidRandomly(2);
             _lastSpawnTime = Time.time;
         }
     }
 
-    private void SpawnAsteriod()
+    private void SpawnAsteroidRandomly(int tier = 0)
+    {
+        //We use the border to determine a valid spawn point. We start by aiming the asteroids movement towards the center of the board
+        //Then we randomly rotate its direction based on the maximum rotation offset.
+        Vector3 spawnPoint = _border.GetRandomSpawnPoint();
+        Vector3 spawnVelocity = -spawnPoint.normalized * _asteroidSpeed;
+        spawnVelocity = Quaternion.Euler(new Vector3(0, 0, Random.Range(-_maxRotationOffset, _maxRotationOffset))) * spawnVelocity;
+
+        SpawnAsteroidAt(spawnPoint, spawnVelocity, tier);
+    }
+
+    private void SpawnAsteroidAt(Vector3 location, Vector3 direction, int tier = 0)
     {
         GameObject newObject = Instantiate(_asteroidPrefab);
         Asteroid newAsteroid = newObject.GetComponent<Asteroid>();
@@ -39,13 +50,20 @@ public class AsteroidSpawner : MonoBehaviour
             Destroy(newObject);
             return;
         }
-        
-        //We use the border to determine a valid spawn point. We start by aiming the asteroids movement towards the center of the board
-        //Then we randomly rotate its direction based on the maximum rotation offset.
-        Vector3 spawnPoint = _border.GetRandomSpawnPoint();
-        Vector3 spawnVelocity = -spawnPoint.normalized * _asteroidSpeed;
-        spawnVelocity = Quaternion.Euler(new Vector3(0, 0, Random.Range(-_maxRotationOffset, _maxRotationOffset))) * spawnVelocity;
-        
-        newAsteroid.SetupAsteroid(spawnPoint, spawnVelocity, 10.0f);
+
+        newAsteroid.SetupAsteroid(this, location, direction, 10.0f, tier);
+    }
+
+    public void SplitAsteroid(Asteroid asteroid, int currentTier)
+    {
+        if (currentTier > 0)
+        {
+            Vector3 randomDir = Quaternion.Euler(new Vector3(0, 0, Random.Range(0.0f, 360.0f))) * Vector3.right;
+            SpawnAsteroidAt(asteroid.transform.position, randomDir * asteroid.GetVelocity() * 1.25f, currentTier - 1);
+            randomDir = Quaternion.Euler(new Vector3(0, 0, Random.Range(0.0f, 360.0f))) * Vector3.right;
+            SpawnAsteroidAt(asteroid.transform.position, randomDir * asteroid.GetVelocity() * 1.25f, currentTier - 1);
+        }
+
+        Destroy(asteroid.gameObject);
     }
 }

@@ -16,6 +16,12 @@ public class Health : MonoBehaviour
         _currentHealth = _startingHealth;
     }
 
+    public void ResetHealth(float newHealth)
+    {
+        _startingHealth = newHealth;
+        _currentHealth = newHealth;
+    }
+
     public void DealDamage(float damage)
     {
         _currentHealth -= damage;
