@@ -450,6 +450,10 @@ PrefabInstance:
       propertyPath: _movementAccelerationRate
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 5376729137303652261, guid: 08562b1fe04ea954ab66bd16c9430381, type: 3}
+      propertyPath: _startingHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6495837543484241446, guid: 08562b1fe04ea954ab66bd16c9430381, type: 3}
       propertyPath: m_Name
       value: PlayerShip
