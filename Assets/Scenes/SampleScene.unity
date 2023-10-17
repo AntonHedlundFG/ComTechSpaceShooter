@@ -561,11 +561,11 @@ PrefabInstance:
       objectReference: {fileID: 387641913}
     - target: {fileID: 6222135022342115284, guid: 32722a419ee0de842b8512a69e3f7a49, type: 3}
       propertyPath: _spawnRate
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6222135022342115284, guid: 32722a419ee0de842b8512a69e3f7a49, type: 3}
       propertyPath: _asteroidSpeed
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

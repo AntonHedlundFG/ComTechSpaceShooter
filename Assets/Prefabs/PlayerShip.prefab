@@ -261,8 +261,10 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 5773238825708681342, guid: addfa09f3c2b3234a9b36a7dbf33e3b4, type: 3}
   _shootCooldown: 0.5
   _bulletSpeed: 25
-  _damage: 5
+  _damage: 1
   _duration: 5
+  _bulletCount: 5
+  _bulletSpread: 3
 --- !u!1 &5981832972386895397
 GameObject:
   m_ObjectHideFlags: 0
