@@ -59,7 +59,7 @@ public class Border : MonoBehaviour
 
         if(shouldSpawnOnXAxis)
         {
-            float xPos = Random.Range(0.0f, xSize);
+            float xPos = Random.Range(-xSize, xSize);
             float yPos = ySize;
             if (shouldSpawnBottomLeft)
                 yPos *= -1;
@@ -68,7 +68,7 @@ public class Border : MonoBehaviour
         else
         {
             float xPos = xSize;
-            float yPos = Random.Range(0.0f, ySize);
+            float yPos = Random.Range(-ySize, ySize);
             if (shouldSpawnBottomLeft)
                 xPos *= -1;
             return new Vector3(xPos, yPos, 0);

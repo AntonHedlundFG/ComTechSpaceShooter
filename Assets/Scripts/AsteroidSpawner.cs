@@ -7,9 +7,13 @@ public class AsteroidSpawner : MonoBehaviour
     [SerializeField] private GameObject _asteroidPrefab;
     [SerializeField] private Border _border;
     [SerializeField] private float _asteroidSpeed = 5.0f;
-    [SerializeField][Range(0.0f, 90.0f)] private float _maxRotationOffset = 35.0f;
+    [SerializeField] [Range(0.0f, 90.0f)] private float _maxRotationOffset = 35.0f;
     [SerializeField] private float _spawnRate = 5.0f;
     private float _lastSpawnTime;
+
+    public static int AsteroidCount;
+    [SerializeField] [Range(0, 1000000)] private int _targetAsteroidCount;
+    [SerializeField] [Range(0, 1000000)] private int _maxAsteroidsPerSpawnCycle;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +22,7 @@ public class AsteroidSpawner : MonoBehaviour
             Destroy(gameObject);
 
         _lastSpawnTime = Time.time;
+        AsteroidCount = 0;
     }
 
     // Update is called once per frame
@@ -25,20 +30,31 @@ public class AsteroidSpawner : MonoBehaviour
     {
         if (Time.time >= _lastSpawnTime + _spawnRate)
         {
-            SpawnAsteroidRandomly(2);
+            SpawnAsteroidRandomly(-1);
             _lastSpawnTime = Time.time;
         }
+
+
     }
 
     private void SpawnAsteroidRandomly(int tier = 0)
     {
+        if (tier == -1)
+        {
+            tier = Random.Range(0, 4);
+        }
         //We use the border to determine a valid spawn point. We start by aiming the asteroids movement towards the center of the board
         //Then we randomly rotate its direction based on the maximum rotation offset.
-        Vector3 spawnPoint = _border.GetRandomSpawnPoint();
-        Vector3 spawnVelocity = -spawnPoint.normalized * _asteroidSpeed;
-        spawnVelocity = Quaternion.Euler(new Vector3(0, 0, Random.Range(-_maxRotationOffset, _maxRotationOffset))) * spawnVelocity;
 
-        SpawnAsteroidAt(spawnPoint, spawnVelocity, tier);
+        int spawnAmount = Mathf.Min(_maxAsteroidsPerSpawnCycle, _targetAsteroidCount - AsteroidCount);
+
+        for (int i = 0; i < spawnAmount; i++)
+        {
+            Vector3 spawnPoint = _border.GetRandomSpawnPoint();
+            Vector3 spawnVelocity = -spawnPoint.normalized * _asteroidSpeed;
+            spawnVelocity = Quaternion.Euler(new Vector3(0, 0, Random.Range(-_maxRotationOffset, _maxRotationOffset))) * spawnVelocity;
+            SpawnAsteroidAt(spawnPoint, spawnVelocity, tier);
+        }
     }
 
     private void SpawnAsteroidAt(Vector3 location, Vector3 direction, int tier = 0)

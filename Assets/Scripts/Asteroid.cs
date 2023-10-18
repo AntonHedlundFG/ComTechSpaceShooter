@@ -16,11 +16,13 @@ public class Asteroid : MonoBehaviour
     {
         _health = GetComponent<Health>();
         _health.onDeath.AddListener(BreakAsteroid);
+        AsteroidSpawner.AsteroidCount++;
     }
 
     private void OnDisable()
     {
         _health.onDeath.RemoveListener(BreakAsteroid);
+        AsteroidSpawner.AsteroidCount--;
     }
 
     void Update()
