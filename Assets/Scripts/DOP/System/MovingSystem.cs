@@ -7,6 +7,7 @@ public partial struct MovingSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        new MovingJob { DeltaTime = Time.deltaTime }.Schedule();
+        var job = new MovingJob { DeltaTime = Time.deltaTime };
+        job.Schedule();
     }
 }

@@ -20,6 +20,6 @@ public class MovingBaker : Baker<MovingAuthoring>
         });
 
         //This should do nothing if the entity already has a transform
-        AddComponent(entity, new LocalTransform());
+        //AddComponent(entity, new LocalTransform());
     }
 }
