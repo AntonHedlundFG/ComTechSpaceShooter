@@ -14,7 +14,7 @@ public readonly partial struct ShipAspect : IAspect
 
     public void Accelerate(float DeltaTime)
     {
-        MoveComponent.ValueRW.Velocity += (ShipComponent.ValueRO.AccelerationRate * DeltaTime) * LocalTransform.ValueRO.Right();
+        MoveComponent.ValueRW.Velocity += (ShipComponent.ValueRO.AccelerationRate * DeltaTime) * ForwardVector();
         if (math.length(MoveComponent.ValueRO.Velocity) > ShipComponent.ValueRO.MaxMoveSpeed)
         {
             MoveComponent.ValueRW.Velocity = math.normalize(MoveComponent.ValueRO.Velocity) * ShipComponent.ValueRO.MaxMoveSpeed;
@@ -32,4 +32,7 @@ public readonly partial struct ShipAspect : IAspect
         MoveComponent.ValueRW.Velocity *= (1.0f - ShipComponent.ValueRO.MovementDrag * DeltaTime);
         RotateComponent.ValueRW.Value *= (1.0f - ShipComponent.ValueRO.RotationDrag * DeltaTime);
     }
+
+    public float3 ForwardVector() => LocalTransform.ValueRO.Right();
+    public float3 BulletSpawnLocation() => LocalTransform.ValueRO.Position;
 }

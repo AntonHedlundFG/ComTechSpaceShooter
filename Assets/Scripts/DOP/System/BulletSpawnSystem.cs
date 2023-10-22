@@ -35,6 +35,13 @@ public partial struct BulletSpawnSystem : ISystem
                         float3 velocity = new float3(1, 0, 0);
                         float3 position = new float3(0, 0, 0);
 
+                        foreach (var ship in SystemAPI.Query<ShipAspect>())
+                        {
+                            position = ship.BulletSpawnLocation();
+                            velocity = ship.ForwardVector();
+                            break;
+                        }
+
                         velocity *= spawn.ValueRO.bulletSpeed;
                         float rotateZ = spawn.ValueRW.random.NextFloat(-spawn.ValueRO.bulletSpread, spawn.ValueRO.bulletSpread);
                         velocity = math.mul(quaternion.RotateZ(math.radians(rotateZ)), velocity);
