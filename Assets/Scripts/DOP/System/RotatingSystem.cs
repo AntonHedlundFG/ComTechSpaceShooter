@@ -3,12 +3,12 @@ using Unity.Entities;
 using UnityEngine;
 
 [UpdateAfter(typeof(DestroyAfterDurationSystem))]
-public partial struct MovingSystem : ISystem
+public partial struct RotatingSystem : ISystem
 {
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        var job = new MovingJob { DeltaTime = Time.deltaTime };
+        var job = new RotatingJob { DeltaTime = Time.deltaTime };
         job.Schedule();
     }
 }
