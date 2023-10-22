@@ -5,7 +5,7 @@ using Unity.Transforms;
 public readonly partial struct MovableAspect : IAspect
 {
     private readonly Entity entity;
-    private readonly RefRW<LocalTransform> LocalTransform;
+    public readonly RefRW<LocalTransform> LocalTransform;
     private readonly RefRO<MovingComponent> MovingComponentData;
 
     public void Move(float DeltaTime)

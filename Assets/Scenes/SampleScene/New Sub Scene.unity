@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RateOfFire: 0.5
   BulletPrefab: {fileID: 5773238825708681342, guid: 35a96aaf0c1110e4daa60ef5241fc533, type: 3}
-  BulletSpeed: 25
+  BulletSpeed: 40
   Damage: 1
   Duration: 7
   BulletCount: 5
