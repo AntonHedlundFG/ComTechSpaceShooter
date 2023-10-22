@@ -19,7 +19,5 @@ public class MovingBaker : Baker<MovingAuthoring>
             Velocity = authoring.Velocity
         });
 
-        //This should do nothing if the entity already has a transform
-        //AddComponent(entity, new LocalTransform());
     }
 }

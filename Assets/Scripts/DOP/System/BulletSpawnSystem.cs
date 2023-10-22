@@ -31,7 +31,7 @@ public partial struct BulletSpawnSystem : ISystem
 
                     for (int i = 0; i < spawn.ValueRO.bulletCount; i++)
                     {
-                         var entity = ecb.Instantiate(spawn.ValueRW.bulletPrefab);
+                        var entity = ecb.Instantiate(spawn.ValueRW.bulletPrefab);
                         float3 velocity = new float3(1, 0, 0);
                         float3 position = new float3(0, 0, 0);
 

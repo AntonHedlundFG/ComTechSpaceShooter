@@ -53,6 +53,6 @@ public partial struct AsteroidSpawnSystem : ISystem
                 ecb.AddComponent(entity, new MovingComponent { Velocity = velocity });
             }
         }
-        
+
     }
 }
