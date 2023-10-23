@@ -328,7 +328,7 @@ MonoBehaviour:
   SpawnRate: 5000
   Speed: 5
   RotationOffset: 20
-  TargetAmount: 100000
+  TargetAmount: 150000
 --- !u!4 &1941496057
 Transform:
   m_ObjectHideFlags: 0
