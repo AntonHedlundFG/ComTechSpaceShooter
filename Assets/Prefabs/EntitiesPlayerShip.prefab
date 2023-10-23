@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8518120419824226362}
   - component: {fileID: 3923029300269529841}
   - component: {fileID: 5475065449442590785}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ThrusterRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 94561187538574283}
   - component: {fileID: 8516748198229466133}
   - component: {fileID: 3083941739565187837}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ThrusterLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1532029906670423082}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 6724842651873467809}
   - component: {fileID: 6194177077522522510}
   - component: {fileID: 1948729973375220739}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MainBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6694092756414638907}
   - component: {fileID: 2293994017772249621}
-  m_Layer: 0
+  - component: {fileID: 6042696910020140426}
+  - component: {fileID: 2307111001158030561}
+  m_Layer: 7
   m_Name: EntitiesPlayerShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,3 +336,51 @@ MonoBehaviour:
   MaxRotationSpeed: 200
   RotationAccelerationRate: 700
   RotationDrag: 5
+--- !u!135 &6042696910020140426
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6495837543484241446}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2307111001158030561
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6495837543484241446}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -48,6 +48,7 @@ public partial struct BulletSpawnSystem : ISystem
                         ecb.AddComponent(entity, new MovingComponent { Velocity = velocity });
                         ecb.AddComponent(entity, new LocalTransform { Position = position, Rotation = quaternion.identity, Scale = 1.0f });
                         ecb.AddComponent(entity, new DestroyedAfterDurationComponent { Duration = spawn.ValueRO.duration, SpawnTime = (float)SystemAPI.Time.ElapsedTime});
+                        ecb.AddComponent(entity, new BulletComponent());
                     }
 
 
