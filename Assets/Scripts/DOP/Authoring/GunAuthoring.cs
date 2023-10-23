@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
+using Unity.Burst;
 
+[BurstCompile]
 public class GunAuthoring : MonoBehaviour
 {
     public float RateOfFire = 0.5f;
@@ -15,6 +17,7 @@ public class GunAuthoring : MonoBehaviour
     public float BulletSpread = 3.0f;
 }
 
+[BurstCompile]
 public class GunBaker : Baker<GunAuthoring>
 {
     public override void Bake(GunAuthoring authoring)

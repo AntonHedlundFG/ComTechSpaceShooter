@@ -6,6 +6,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
+[BurstCompile]
 [UpdateAfter(typeof(MovingSystem))]
 public partial struct EdgeOfScreenSystem : ISystem
 {

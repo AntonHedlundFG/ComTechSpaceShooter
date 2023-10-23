@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
+using Unity.Burst;
 
+[BurstCompile]
 public class ShipAuthoring : MonoBehaviour
 {
     public float MaxMoveSpeed = 25.0f;
@@ -13,7 +15,7 @@ public class ShipAuthoring : MonoBehaviour
     public float RotationDrag = 5.0f;
 }
 
-
+[BurstCompile]
 public class ShipBaker : Baker<ShipAuthoring>
 {
     public override void Bake(ShipAuthoring authoring)

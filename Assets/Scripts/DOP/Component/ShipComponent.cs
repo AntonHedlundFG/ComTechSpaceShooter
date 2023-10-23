@@ -1,5 +1,7 @@
+using Unity.Burst;
 using Unity.Entities;
 
+[BurstCompile]
 public struct ShipComponent : IComponentData
 {
     public float MaxMoveSpeed;

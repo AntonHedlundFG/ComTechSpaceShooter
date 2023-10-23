@@ -4,12 +4,14 @@ using Unity.Transforms;
 using Unity.Mathematics;
 using UnityEngine;
 
+[BurstCompile]
 public readonly partial struct RotatableAspect : IAspect
 {
     private readonly Entity entity;
     private readonly RefRW<LocalTransform> LocalTransform;
     private readonly RefRW<RotationComponent> RotationComponent;
 
+    [BurstCompile]
     public void Rotate(float DeltaTime)
     {
         quaternion previousRotation = LocalTransform.ValueRO.Rotation;

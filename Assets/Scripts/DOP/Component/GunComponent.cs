@@ -4,7 +4,9 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 using Random = Unity.Mathematics.Random;
+using Unity.Burst;
 
+[BurstCompile]
 public struct GunComponent : IComponentData
 {
     public float rateOfFire;

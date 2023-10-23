@@ -9,6 +9,7 @@ using UnityEngine;
 using Unity.Jobs;
 using Unity.Collections;
 
+[BurstCompile]
 public partial struct BulletAsteroidTriggerSystem : ISystem
 {
     //We use this hashset to keep track of which asteroids have already been marked

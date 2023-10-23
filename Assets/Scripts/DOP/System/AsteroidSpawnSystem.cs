@@ -7,6 +7,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
+[BurstCompile]
 public partial struct AsteroidSpawnSystem : ISystem
 {
     private EntityQuery _asteroidQuery;

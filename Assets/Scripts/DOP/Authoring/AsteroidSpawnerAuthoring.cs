@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
+using Unity.Burst;
 
+[BurstCompile]
 public class AsteroidSpawnerAuthoring : MonoBehaviour
 {
     public GameObject AsteroidGameObject;
@@ -15,6 +17,7 @@ public class AsteroidSpawnerAuthoring : MonoBehaviour
     public int TargetAmount = 10000;
 }
 
+[BurstCompile]
 public class AsteroidSpawnerBaker : Baker<AsteroidSpawnerAuthoring>
 {
     public override void Bake(AsteroidSpawnerAuthoring authoring)

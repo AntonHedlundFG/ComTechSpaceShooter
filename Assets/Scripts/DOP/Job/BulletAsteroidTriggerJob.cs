@@ -4,7 +4,9 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Physics;
 using Unity.Collections;
+using Unity.Burst;
 
+[BurstCompile]
 public partial struct BulletAsteroidTriggerJob : ITriggerEventsJob
 {
     [ReadOnly] public ComponentLookup<BulletComponent> BulletGroup;
@@ -16,6 +18,7 @@ public partial struct BulletAsteroidTriggerJob : ITriggerEventsJob
     //and both bullets would be destroyed.
     public NativeHashSet<Entity> AsteroidDestroyList;
 
+    [BurstCompile]
     public void Execute(TriggerEvent triggerEvent)
     {
         Entity A = triggerEvent.EntityA;
@@ -30,6 +33,7 @@ public partial struct BulletAsteroidTriggerJob : ITriggerEventsJob
             HandleCollision(B, A);
     }
 
+    [BurstCompile]
     private void HandleCollision(Entity Bullet, Entity Asteroid)
     {
         if (AsteroidDestroyList.Contains(Asteroid))

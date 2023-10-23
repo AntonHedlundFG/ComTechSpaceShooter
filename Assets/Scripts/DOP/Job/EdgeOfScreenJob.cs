@@ -3,10 +3,12 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
+[BurstCompile]
 public partial struct EdgeOfScreenJob : IJobEntity
 {
     public AsteroidSpawnerComponent spawnerComp;
 
+    [BurstCompile]
     private void Execute(MovableAspect Movable)
     {
         float3 position = Movable.LocalTransform.ValueRO.Position;

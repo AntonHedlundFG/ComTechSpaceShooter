@@ -2,6 +2,7 @@ using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;
 
+[BurstCompile]
 [UpdateAfter(typeof(DestroyAfterDurationSystem))]
 public partial struct RotatingSystem : ISystem
 {
