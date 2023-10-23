@@ -11,6 +11,9 @@ using Unity.Collections;
 
 public partial struct BulletAsteroidTriggerSystem : ISystem
 {
+    //We use this hashset to keep track of which asteroids have already been marked
+    //for deletion, otherwise two bullets could collide with the same asteroid in one frame
+    //and both bullets would be destroyed.
     private NativeHashSet<Entity> AsteroidDestroyList;
 
    [BurstCompile]

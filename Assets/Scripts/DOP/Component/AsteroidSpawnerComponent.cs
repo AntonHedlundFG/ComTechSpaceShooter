@@ -9,7 +9,6 @@ public struct AsteroidSpawnerComponent : IComponentData
 {
     public Entity prefab;
     public float spawnRate;
-    public float nextSpawnTime;
     public Random random;
     public float3 topLeft;
     public float3 btmRight;

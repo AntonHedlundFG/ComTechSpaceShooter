@@ -25,7 +25,6 @@ public class AsteroidSpawnerBaker : Baker<AsteroidSpawnerAuthoring>
         {
             prefab = GetEntity(authoring.AsteroidGameObject, TransformUsageFlags.Dynamic),
             spawnRate = authoring.SpawnRate,
-            nextSpawnTime = 0.0f,
             random = new Unity.Mathematics.Random((uint)DateTime.Now.Ticks),
             topLeft = authoring.TopLeftLocation.position,
             btmRight = authoring.BtmRightLocation.position,

@@ -26,16 +26,8 @@ public class AsteroidCountUpdater : MonoBehaviour
             {
                 var em = World.DefaultGameObjectInjectionWorld.EntityManager;
                 var query = em.CreateEntityQuery(typeof(AsteroidComponentData));
-                Entity[] entitiesArray = query.ToEntityArray(Allocator.Temp).ToArray();
-                count = entitiesArray.Length;
+                count = query.ToEntityArray(Allocator.Temp).Length;
                 query.Dispose();
-                /*
-                var qb = SystemAPI.QueryBuilder();
-                qb.WithAll<AsteroidComponentData>();
-                EntityQuery query = qb.Build();
-                count = query.CalculateEntityCount();
-                query.Dispose();
-                */
             }
             else
             {

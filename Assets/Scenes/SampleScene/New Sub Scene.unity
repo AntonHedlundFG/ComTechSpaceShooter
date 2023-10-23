@@ -152,13 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d50d0d4f9f98e340855ccd18e4f5d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RateOfFire: 0.5
+  RateOfFire: 0.1
   BulletPrefab: {fileID: 5773238825708681342, guid: 35a96aaf0c1110e4daa60ef5241fc533, type: 3}
   BulletSpeed: 40
   Damage: 1
   Duration: 2
-  BulletCount: 5
-  BulletSpread: 3
+  BulletCount: 1000
+  BulletSpread: 15
 --- !u!4 &935022485
 Transform:
   m_ObjectHideFlags: 0
@@ -325,10 +325,10 @@ MonoBehaviour:
   AsteroidGameObject: {fileID: 7773054935254748733, guid: f6743ceab443943489e768c7db523a54, type: 3}
   TopLeftLocation: {fileID: 1450179517}
   BtmRightLocation: {fileID: 1437874880}
-  SpawnRate: 500
+  SpawnRate: 5000
   Speed: 5
   RotationOffset: 20
-  TargetAmount: 25000
+  TargetAmount: 100000
 --- !u!4 &1941496057
 Transform:
   m_ObjectHideFlags: 0

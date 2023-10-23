@@ -23,18 +23,20 @@ public partial struct BulletSpawnSystem : ISystem
             var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
-            foreach (var spawn in SystemAPI.Query<RefRW<GunComponent>>())
+            foreach (var gun in SystemAPI.Query<RefRW<GunComponent>>())
             {
-                if (spawn.ValueRO.nextShootTime < SystemAPI.Time.ElapsedTime)
+                if (gun.ValueRO.nextShootTime < SystemAPI.Time.ElapsedTime)
                 {
-                    spawn.ValueRW.nextShootTime = (float)SystemAPI.Time.ElapsedTime + spawn.ValueRO.rateOfFire;
+                    gun.ValueRW.nextShootTime = (float)SystemAPI.Time.ElapsedTime + gun.ValueRO.rateOfFire;
 
-                    for (int i = 0; i < spawn.ValueRO.bulletCount; i++)
+                    for (int i = 0; i < gun.ValueRO.bulletCount; i++)
                     {
-                        var entity = ecb.Instantiate(spawn.ValueRW.bulletPrefab);
-                        float3 velocity = new float3(1, 0, 0);
+                        var entity = ecb.Instantiate(gun.ValueRW.bulletPrefab);
+                        float3 velocity = new float3(0, 0, 0);
                         float3 position = new float3(0, 0, 0);
 
+                        //Not pretty solution, but I know only one ship exists. 
+                        //I'm sure theres a way to get it as a singleton, but I'm moving on.
                         foreach (var ship in SystemAPI.Query<ShipAspect>())
                         {
                             position = ship.BulletSpawnLocation();
@@ -42,12 +44,14 @@ public partial struct BulletSpawnSystem : ISystem
                             break;
                         }
 
-                        velocity *= spawn.ValueRO.bulletSpeed;
-                        float rotateZ = spawn.ValueRW.random.NextFloat(-spawn.ValueRO.bulletSpread, spawn.ValueRO.bulletSpread);
+                        //Set bullet speed and add spread
+                        velocity *= gun.ValueRO.bulletSpeed;
+                        float rotateZ = gun.ValueRW.random.NextFloat(-gun.ValueRO.bulletSpread, gun.ValueRO.bulletSpread);
                         velocity = math.mul(quaternion.RotateZ(math.radians(rotateZ)), velocity);
+                        
                         ecb.AddComponent(entity, new MovingComponent { Velocity = velocity });
                         ecb.AddComponent(entity, new LocalTransform { Position = position, Rotation = quaternion.identity, Scale = 1.0f });
-                        ecb.AddComponent(entity, new DestroyedAfterDurationComponent { Duration = spawn.ValueRO.duration, SpawnTime = (float)SystemAPI.Time.ElapsedTime});
+                        ecb.AddComponent(entity, new DestroyedAfterDurationComponent { Duration = gun.ValueRO.duration, SpawnTime = (float)SystemAPI.Time.ElapsedTime});
                         ecb.AddComponent(entity, new BulletComponent());
                     }
 

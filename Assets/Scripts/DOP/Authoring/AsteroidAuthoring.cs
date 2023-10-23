@@ -3,13 +3,9 @@ using Unity.Entities;
 using Unity.Rendering;
 using UnityEngine;
 
-//[RequireComponent(typeof(MeshRenderer))]
-//[RequireComponent(typeof(MeshFilter))]
 public class AsteroidAuthoring : MonoBehaviour
 {
     public int Tier;
-    //public MeshRenderer MeshRenderer;
-    //public MeshFilter MeshFilter;
 }
 
 public class AsteroidBaker : Baker<AsteroidAuthoring>
