@@ -22,7 +22,10 @@ public partial struct AsteroidSpawnSystem : ISystem
 
         foreach (var spawn in SystemAPI.Query<RefRW<AsteroidSpawnerComponent>>())
         {
-            if (SystemAPI.Time.ElapsedTime > spawn.ValueRW.nextSpawnTime)
+
+            int spawnAmount = (int)math.ceil(SystemAPI.Time.DeltaTime * spawn.ValueRO.spawnRate);
+
+            for (int i = 0; i < spawnAmount; i++)
             {
                 spawn.ValueRW.nextSpawnTime = (float)SystemAPI.Time.ElapsedTime + spawn.ValueRO.spawnRate;
 
@@ -32,7 +35,7 @@ public partial struct AsteroidSpawnSystem : ISystem
                 bool lerpAlongX = spawn.ValueRW.random.NextBool();
                 bool topLeft = spawn.ValueRW.random.NextBool();
                 float3 position = new float3(0, 0, 0);
-                
+
                 float lerpValue = spawn.ValueRW.random.NextFloat(0.0f, 1.0f);
                 if (lerpAlongX)
                 {
@@ -52,6 +55,12 @@ public partial struct AsteroidSpawnSystem : ISystem
                 velocity = math.mul(quaternion.RotateZ(math.radians(rotateZ)), velocity);
                 ecb.AddComponent(entity, new MovingComponent { Velocity = velocity });
             }
+
+            /*
+            if (SystemAPI.Time.ElapsedTime > spawn.ValueRW.nextSpawnTime)
+            {
+                
+            }*/
         }
 
     }

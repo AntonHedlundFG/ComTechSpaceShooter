@@ -15,4 +15,5 @@ public struct AsteroidSpawnerComponent : IComponentData
     public float3 btmRight;
     public float speed;
     public float rotationOffset;
+    public int targetAmount;
 }

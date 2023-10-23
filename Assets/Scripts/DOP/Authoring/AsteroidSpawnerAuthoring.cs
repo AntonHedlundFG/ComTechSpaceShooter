@@ -12,6 +12,7 @@ public class AsteroidSpawnerAuthoring : MonoBehaviour
     public float SpawnRate = 5.0f;
     public float Speed = 1.0f;
     public float RotationOffset = 35.0f;
+    public int TargetAmount = 10000;
 }
 
 public class AsteroidSpawnerBaker : Baker<AsteroidSpawnerAuthoring>
@@ -29,7 +30,8 @@ public class AsteroidSpawnerBaker : Baker<AsteroidSpawnerAuthoring>
             topLeft = authoring.TopLeftLocation.position,
             btmRight = authoring.BtmRightLocation.position,
             speed = authoring.Speed,
-            rotationOffset = authoring.RotationOffset
+            rotationOffset = authoring.RotationOffset,
+            targetAmount = authoring.TargetAmount
         });
     }
 }

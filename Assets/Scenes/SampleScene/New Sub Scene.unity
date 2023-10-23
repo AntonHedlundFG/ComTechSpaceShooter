@@ -325,9 +325,10 @@ MonoBehaviour:
   AsteroidGameObject: {fileID: 7773054935254748733, guid: f6743ceab443943489e768c7db523a54, type: 3}
   TopLeftLocation: {fileID: 1450179517}
   BtmRightLocation: {fileID: 1437874880}
-  SpawnRate: 0.5
+  SpawnRate: 500
   Speed: 5
   RotationOffset: 20
+  TargetAmount: 25000
 --- !u!4 &1941496057
 Transform:
   m_ObjectHideFlags: 0
