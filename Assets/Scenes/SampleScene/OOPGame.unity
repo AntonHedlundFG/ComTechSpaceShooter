@@ -157,7 +157,7 @@ MonoBehaviour:
   BulletSpeed: 40
   Damage: 1
   Duration: 2
-  BulletCount: 1000
+  BulletCount: 100
   BulletSpread: 15
 --- !u!4 &935022485
 Transform:
@@ -325,10 +325,10 @@ MonoBehaviour:
   AsteroidGameObject: {fileID: 7773054935254748733, guid: f6743ceab443943489e768c7db523a54, type: 3}
   TopLeftLocation: {fileID: 1450179517}
   BtmRightLocation: {fileID: 1437874880}
-  SpawnRate: 5000
+  SpawnRate: 10000
   Speed: 5
   RotationOffset: 20
-  TargetAmount: 150000
+  TargetAmount: 100000
 --- !u!4 &1941496057
 Transform:
   m_ObjectHideFlags: 0
