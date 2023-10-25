@@ -20,15 +20,14 @@ Using mostly the same code as in the DOTS version, with a few changes to avoid m
 ## Comparing Naive(A) to DOTS(B) with 10k asteroids
 ### Memory
 Ignoring the profiler overhead, the memory usage for the DOTS version was more or less equivalent to the Naive version. I suppose this should not be too surprising, as the asteroids have transforms, meshes and material components, at which point any memory benefits from using Entities over GameObjects would be negligible.
-![ImageStuff](/Screenshots/MemoryComparisons/Naive10kVSDOTS10k.png)
+![MemoryProfiler, Naive(A) vs DOTS(B)](/Screenshots/MemoryComparisons/Naive10kVSDOTS10k.png)
 ### CPU
-
-
-
+This is where the benefits really show. The first image below shows the CPU profiling of the naive approach, the second image shows the DOTS version. A major benefit was the reduction in physics calculations, which were more or less free in the DOTS version. In fact, the largest culprits in the DOTS version are the "MovingJob" and "EdgeOfScreenJob" which are my implementations that do not spread over multiple threads.
+![Profiler, Naive 10k asteroids](/Screenshots/Profiler/Naive10k.png)
+![Profiler, DOTS 10k asteroids](/Screenshots/Profiler/Dots10k.png)
 
 ## TO-DO
 
-- Make 10k-asteroid comparison between Naive and DOTS version
 - Make 100k-asteroid comparison between DOTS and BurstCompile
 - Take deeper look at profiler for 100k BurstCompile to understand bottlenecks
 - Verify that executables run properly on other devices
