@@ -13,7 +13,15 @@ For this version I rewrote the entire game to use the Unity DOTS package, with J
 With this improvement, the game can easily manage 100k asteroids without stuttering. Once you start shooting 1000 bullets per second, however, the collision calculations in combination with the creation & destruction of both bullets and asteroids get quite heavy.
 
 ## [BurstCompile](https://github.com/AntonHedlundFG/ComTechSpaceShooter/releases/tag/BurstCompile-Everything)
-Using mostly the same code as in the DOTS version, with a few changes to avoid managed types, this version uses the BurstCompiler for all C# code.
+Using mostly the same code as in the DOTS version, with a few changes to avoid managed types, this version uses the BurstCompiler for all C# code. As if magic, the BurstCompiler completely removes the stutter from the heavy collision detection caused by firing bullets that I saw in the DOTS version. It also automatically seems to optimize my custom Jobs, and divide them up between CPU cores. 
+
+# Summary:
+The data-oriented approach I used after the naive one allowed me to handle far, far more objects on screen than before. Even though the exact same calculations are being made, separating data from functionality seems to improve performance substantially, confirming the intended benefits of data-oriented design. 
+
+A more surprising discovery was the power of Unity's BurstCompiler, which solved problems I did not know it could. It optimized my custom jobs by automatically parallellizing them, which I did expect. But somehow, it managed to completely eradicate the stuttering caused by thousands of collision checks between bullets and asteroids that the DOTS version without the BurstCompiler had. To be honest, I still don't quite understand -how- it did this. During a mentoring session I asked about it, but we were unable to determine the cause.
+
+Had the Burst Compiler not solved all my problems, my next steps would have been to optimize the custom Jobs I wrote, by allowing them to run on multiple cores and parallellizing them with other, unrelated jobs. 
+For example, the [MovingJob](/Assets/Scripts/DOP/Job/MovingJob.cs) and the [RotatingJob](/Assets/Scripts/DOP/Job/RotatingJob.cs) might be able to run at the same time. Even though they both make changes to the LocalTransform of an entity, they write to different values in the component.
 
 # Analysis
 
@@ -47,7 +55,3 @@ In the first pair of screenshots, we can see the CPU usage while 100k asteroids 
 ![Profiler, DOTS 100k asteroids](/Screenshots/Profiler/Dots100k.png)
 #### Dots, 100k asteroids, while shooting
 ![Profiler, DOTS 100k asteroids with shooting](/Screenshots/Profiler/Dots100kshooting.png)
-
-## TO-DO
-
-- Verify that executables run properly on other devices
