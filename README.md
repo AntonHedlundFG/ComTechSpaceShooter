@@ -15,6 +15,17 @@ With this improvement, the game can easily manage 100k asteroids without stutter
 ## [BurstCompile](https://github.com/AntonHedlundFG/ComTechSpaceShooter/releases/tag/BurstCompile-Everything)
 Using mostly the same code as in the DOTS version, with a few changes to avoid managed types, this version uses the BurstCompiler for all C# code.
 
+# Analysis
+
+## Comparing Naive(A) to DOTS(B) with 10k asteroids
+### Memory
+Ignoring the profiler overhead, the memory usage for the DOTS version was more or less equivalent to the Naive version. I suppose this should not be too surprising, as the asteroids have transforms, meshes and material components, at which point any memory benefits from using Entities over GameObjects would be negligible.
+![ImageStuff](/Screenshots/MemoryComparisons/Naive10kVSDOTS10k.png)
+### CPU
+
+
+
+
 ## TO-DO
 
 - Make 10k-asteroid comparison between Naive and DOTS version
