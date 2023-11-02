@@ -15,7 +15,7 @@ With this improvement, the game can easily manage 100k asteroids without stutter
 ## [BurstCompile](https://github.com/AntonHedlundFG/ComTechSpaceShooter/releases/tag/BurstCompile-Everything)
 Using mostly the same code as in the DOTS version, with a few changes to avoid managed types, this version uses the BurstCompiler for all C# code. As if magic, the BurstCompiler completely removes the stutter from the heavy collision detection caused by firing bullets that I saw in the DOTS version. It also automatically seems to optimize my custom Jobs, and divide them up between CPU cores. 
 
-# Summary:
+# Summary
 The data-oriented approach I used after the naive one allowed me to handle far, far more objects on screen than before. Even though the exact same calculations are being made, separating data from functionality seems to improve performance substantially, confirming the intended benefits of data-oriented design. 
 
 A more surprising discovery was the power of Unity's BurstCompiler, which solved problems I did not know it could. It optimized my custom jobs by automatically parallellizing them, which I did expect. But somehow, it managed to completely eradicate the stuttering caused by thousands of collision checks between bullets and asteroids that the DOTS version without the BurstCompiler had. To be honest, I still don't quite understand -how- it did this. During a mentoring session I asked about it, but we were unable to determine the cause.
